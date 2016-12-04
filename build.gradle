@@ -1,0 +1,50 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+jar {
+	baseName = 'ex-mvcjsf-app'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-web')
+
+	compile('org.projectlombok:lombok:1.16.10')
+
+	compile('com.sun.faces:jsf-api:2.2.14')
+	compile('com.sun.faces:jsf-impl:2.2.14')
+
+	runtime('com.h2database:h2')
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+}
+
+def tomcatHome = '~/dev/apache-tomcat-8.5.8'
+
+task deploy(type: Copy) {
+    from war.archivePath
+    into "${tomcatHome}/webapps"
+}
