@@ -26,16 +26,24 @@ repositories {
 	mavenCentral()
 }
 
+configurations {
+   compile.exclude module: 'spring-boot-starter-tomcat'
+}
 
 dependencies {
+
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	
+	// Runtime dep servlet-api
+	compile('org.springframework.boot:spring-boot-starter-undertow')
+	// compile('javax.servlet:javax.servlet-api')
 
 	compile('org.projectlombok:lombok:1.16.10')
 
 	compile('com.sun.faces:jsf-api:2.2.14')
 	compile('com.sun.faces:jsf-impl:2.2.14')
-
+	
 	runtime('org.primefaces:primefaces:6.0')
 
 	runtime('com.h2database:h2')

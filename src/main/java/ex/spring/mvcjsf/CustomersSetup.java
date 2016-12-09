@@ -10,7 +10,10 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class CustomersSetup {
+
 	private List<Customer> customers;
+
+	private List<Customer> filteredCustomers;
 
 	public List<Customer> getCustomers() {
 		return customers;
@@ -41,5 +44,13 @@ public class CustomersSetup {
 
 		customers.add(customer3);
 		this.customers = customers;
+	}
+
+	public List<Customer> getFilteredCustomers() {
+		return filteredCustomers;
+	}
+
+	public void setFilteredCustomers(List<Customer> filteredCustomers) {
+		this.filteredCustomers = filteredCustomers;
 	}
 }
